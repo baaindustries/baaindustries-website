@@ -43,10 +43,10 @@ export default function FeaturedProducts() {
             <Link
               key={product.id}
               href={`/product/${product.id}`}
-              className="bg-[#111111] border border-[#1E1E1E] hover:border-[#333] rounded-2xl overflow-hidden group transition-all hover:bg-[#141414]"
+              className="bg-[#161616] border border-[#2A2A2A] hover:border-[#00C2FF] rounded-2xl overflow-hidden group transition-all hover:bg-[#1A1A1A]"
             >
               {/* Product image area */}
-              <div className="relative bg-[#1A1A1A] h-40 flex items-center justify-center">
+              <div className="relative bg-[#222222] h-40 flex items-center justify-center">
                 <span className="text-6xl">{product.emoji}</span>
                 {product.badge && (
                   <span className={`absolute top-3 left-3 text-xs font-bold px-2 py-0.5 rounded ${badgeColors[product.badge]}`}>

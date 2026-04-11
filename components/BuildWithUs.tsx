@@ -58,7 +58,7 @@ export default function BuildWithUs() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="bg-[#111111] border border-[#1E1E1E] hover:border-[#333] rounded-2xl p-6 flex flex-col gap-4 group transition-all hover:bg-[#141414]"
+              className="bg-[#161616] border border-[#2A2A2A] hover:border-[#00C2FF] rounded-2xl p-6 flex flex-col gap-4 group transition-all hover:bg-[#1A1A1A]"
             >
               <div className="text-4xl">{service.icon}</div>
               <div>
