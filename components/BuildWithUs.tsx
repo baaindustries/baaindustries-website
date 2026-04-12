@@ -7,13 +7,15 @@ const services = [
     description: 'Custom PCB design and manufacturing with fast turnaround. From prototype to production runs.',
     features: ['1–32 layer boards', 'Express 24hr turnaround', 'SMT assembly available'],
     cta: 'Get PCB Quote',
+    href: '/build-with-us',
   },
   {
     icon: '🖨️',
     title: '3D Printing',
     description: 'FDM and resin 3D printing for enclosures, prototypes, and custom mechanical parts.',
     features: ['FDM & Resin options', 'Multiple materials', 'Finishing & painting'],
-    cta: 'Get 3D Print Quote',
+    cta: 'Get Instant Quote',
+    href: '/3d-printing',
   },
   {
     icon: '✂️',
@@ -21,6 +23,7 @@ const services = [
     description: 'Precision laser cutting for acrylic, wood, metal sheets, and custom panels.',
     features: ['Acrylic, wood & metal', 'Custom dimensions', 'Engraving available'],
     cta: 'Get Laser Quote',
+    href: '/build-with-us',
   },
   {
     icon: '🔋',
@@ -28,12 +31,13 @@ const services = [
     description: 'Bespoke battery pack design and assembly for drones, robots, and industrial applications.',
     features: ['Li-Ion & LiPo options', 'Custom voltage & capacity', 'BMS integration'],
     cta: 'Get Battery Quote',
+    href: '/build-with-us',
   },
 ];
 
 export default function BuildWithUs() {
   return (
-    <section className="bg-[#F9F9F9] py-20 px-4">
+    <section id="build-with-us" className="bg-[#F9F9F9] py-20 px-4">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -69,7 +73,7 @@ export default function BuildWithUs() {
                 ))}
               </ul>
               <Link
-                href="/build-with-us"
+                href={service.href}
                 className="mt-auto text-center border-2 border-[#111111] hover:bg-[#F5C100] hover:border-[#F5C100] text-[#111111] text-sm font-bold py-2.5 rounded-lg transition-all"
               >
                 {service.cta} →

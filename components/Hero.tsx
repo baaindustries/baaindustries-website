@@ -37,7 +37,7 @@ export default function Hero() {
               Shop Now →
             </Link>
             <Link
-              href="/build-with-us"
+              href="/#build-with-us"
               className="bg-white hover:bg-gray-50 border-2 border-[#111111] transition-colors text-[#111111] px-8 py-3.5 rounded-lg text-base font-bold"
             >
               Build With Us

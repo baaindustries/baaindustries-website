@@ -102,7 +102,7 @@ export default function Navbar() {
                 {cat}
               </Link>
             ))}
-            <Link href="/build-with-us" className="text-[#111111] bg-[#F5C100] hover:bg-[#e0b000] transition-colors font-bold px-3 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
+            <Link href="/#build-with-us" className="text-[#111111] bg-[#F5C100] hover:bg-[#e0b000] transition-colors font-bold px-3 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
               ⚡ Build With Us
             </Link>
           </div>
