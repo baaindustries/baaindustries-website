@@ -34,7 +34,7 @@ export default function Hero() {
               href="/shop"
               className="bg-[#111111] hover:bg-[#333333] transition-colors text-white font-bold px-8 py-3.5 rounded-lg text-base"
             >
-              Shop Now →
+              Shop FPV Parts →
             </Link>
             <Link
               href="/#build-with-us"
