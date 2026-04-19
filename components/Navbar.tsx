@@ -108,22 +108,26 @@ export default function Navbar() {
 
         {/* Category nav */}
         <div className="border-t border-gray-100 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 flex items-center gap-6 overflow-x-auto scrollbar-hide py-2.5 text-sm">
+          <div className="max-w-7xl mx-auto px-4 flex items-center py-2.5 text-sm gap-6">
+
+            {/* Left: All Categories + scrollable category links */}
             <Link href="/shop" className="bg-[#111111] text-white font-semibold px-3 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
               ☰ All Categories
             </Link>
 
-            {CATEGORIES.map((cat) => (
-              <Link
-                key={cat.label}
-                href={cat.href}
-                className="text-gray-600 hover:text-[#111111] transition-colors whitespace-nowrap flex-shrink-0 font-medium"
-              >
-                {cat.label}
-              </Link>
-            ))}
+            <div className="flex items-center gap-6 overflow-x-auto scrollbar-hide flex-1 min-w-0">
+              {CATEGORIES.map((cat) => (
+                <Link
+                  key={cat.label}
+                  href={cat.href}
+                  className="text-gray-600 hover:text-[#111111] transition-colors whitespace-nowrap flex-shrink-0 font-medium"
+                >
+                  {cat.label}
+                </Link>
+              ))}
+            </div>
 
-            {/* Shop by Brands dropdown */}
+            {/* Shop by Brands — outside the overflow container so dropdown isn't clipped */}
             <div
               className="relative flex-shrink-0"
               onMouseEnter={() => {
@@ -131,7 +135,7 @@ export default function Navbar() {
                 setBrandsOpen(true);
               }}
               onMouseLeave={() => {
-                brandsTimeout.current = setTimeout(() => setBrandsOpen(false), 120);
+                brandsTimeout.current = setTimeout(() => setBrandsOpen(false), 150);
               }}
             >
               <button className="flex items-center gap-1 text-gray-600 hover:text-[#111111] transition-colors font-medium whitespace-nowrap">
@@ -142,7 +146,7 @@ export default function Navbar() {
               </button>
 
               {brandsOpen && (
-                <div className="absolute top-full left-0 mt-1 z-50 w-64 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
+                <div className="absolute top-full right-0 mt-1 z-50 w-64 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
                   <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-100">
                     <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Our Brands</p>
                   </div>
@@ -152,7 +156,6 @@ export default function Navbar() {
                       href={`/brands/${brand.slug}`}
                       className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors group"
                     >
-                      {/* Brand logo chip */}
                       <div
                         className="w-12 h-8 rounded-md flex items-center justify-center flex-shrink-0 font-extrabold text-white text-xs tracking-widest"
                         style={{ backgroundColor: brand.color }}
