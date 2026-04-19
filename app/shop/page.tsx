@@ -178,7 +178,7 @@ export default function ShopPage() {
             FPV <span className="text-[#F5C100]">Parts & Kits</span>
           </h1>
           <p className="text-gray-400 text-sm">
-            Everything you need to build, upgrade, and fly — shipped from India to the US & EU.
+            Everything you need to build, upgrade, and fly — delivered to the US & EU.
           </p>
         </div>
       </div>

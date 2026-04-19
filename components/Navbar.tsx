@@ -1,11 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 
+const BRANDS = [
+  {
+    name: 'EMAX',
+    slug: 'emax',
+    tagline: 'FPV Motors & Quads',
+    color: '#E60012',
+    products: 47,
+  },
+];
+
+const CATEGORIES = [
+  { label: 'Motors',            href: '/shop?category=Motors' },
+  { label: 'Sensors',           href: '/shop?category=Sensors' },
+  { label: 'Development Boards',href: '/shop?category=Development+Boards' },
+  { label: '3D Printer Parts',  href: '/shop?category=3D+Printer+Parts' },
+];
+
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [mobileOpen, setMobileOpen]       = useState(false);
+  const [brandsOpen, setBrandsOpen]       = useState(false);
+  const [searchQuery, setSearchQuery]     = useState('');
+  const brandsTimeout                     = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   return (
     <header className="w-full sticky top-0 z-50">
@@ -90,18 +109,74 @@ export default function Navbar() {
         {/* Category nav */}
         <div className="border-t border-gray-100 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 flex items-center gap-6 overflow-x-auto scrollbar-hide py-2.5 text-sm">
-            <Link href="/categories" className="bg-[#111111] text-white font-semibold px-3 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
+            <Link href="/shop" className="bg-[#111111] text-white font-semibold px-3 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
               ☰ All Categories
             </Link>
-            {['Microcontrollers', 'Motors & Drives', 'Sensors', 'Drones & FPV', 'Power & Batteries', 'Kits & Bundles', 'New Arrivals', 'Bulk Orders'].map((cat) => (
+
+            {CATEGORIES.map((cat) => (
               <Link
-                key={cat}
-                href={`/category/${cat.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`}
+                key={cat.label}
+                href={cat.href}
                 className="text-gray-600 hover:text-[#111111] transition-colors whitespace-nowrap flex-shrink-0 font-medium"
               >
-                {cat}
+                {cat.label}
               </Link>
             ))}
+
+            {/* Shop by Brands dropdown */}
+            <div
+              className="relative flex-shrink-0"
+              onMouseEnter={() => {
+                if (brandsTimeout.current) clearTimeout(brandsTimeout.current);
+                setBrandsOpen(true);
+              }}
+              onMouseLeave={() => {
+                brandsTimeout.current = setTimeout(() => setBrandsOpen(false), 120);
+              }}
+            >
+              <button className="flex items-center gap-1 text-gray-600 hover:text-[#111111] transition-colors font-medium whitespace-nowrap">
+                Shop by Brands
+                <svg className={`h-3.5 w-3.5 transition-transform ${brandsOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {brandsOpen && (
+                <div className="absolute top-full left-0 mt-1 z-50 w-64 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
+                  <div className="px-4 py-2.5 bg-gray-50 border-b border-gray-100">
+                    <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Our Brands</p>
+                  </div>
+                  {BRANDS.map((brand) => (
+                    <Link
+                      key={brand.slug}
+                      href={`/brands/${brand.slug}`}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors group"
+                    >
+                      {/* Brand logo chip */}
+                      <div
+                        className="w-12 h-8 rounded-md flex items-center justify-center flex-shrink-0 font-extrabold text-white text-xs tracking-widest"
+                        style={{ backgroundColor: brand.color }}
+                      >
+                        EMAX
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[#111111] font-semibold text-sm group-hover:text-[#E60012] transition-colors">{brand.name}</p>
+                        <p className="text-gray-400 text-xs">{brand.tagline} · {brand.products} products</p>
+                      </div>
+                      <svg className="h-4 w-4 text-gray-300 group-hover:text-[#E60012] transition-colors flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  ))}
+                  <div className="px-4 py-2.5 border-t border-gray-100 bg-gray-50">
+                    <Link href="/brands" className="text-xs font-semibold text-[#111111] hover:text-[#F5C100] transition-colors">
+                      View all brands →
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link href="/#build-with-us" className="text-[#111111] bg-[#F5C100] hover:bg-[#e0b000] transition-colors font-bold px-3 py-1 rounded text-xs whitespace-nowrap flex-shrink-0">
               ⚡ Build With Us
             </Link>
@@ -111,12 +186,47 @@ export default function Navbar() {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 px-4 py-3 space-y-2 text-sm text-gray-700">
-          {['Microcontrollers', 'Motors & Drives', 'Sensors', 'Drones & FPV', 'Power & Batteries', 'Kits & Bundles', 'New Arrivals', 'Bulk Orders', 'Build With Us'].map((item) => (
-            <Link key={item} href="#" className="block py-1.5 hover:text-[#111111] transition-colors border-b border-gray-100">
-              {item}
+        <div className="md:hidden bg-white border-b border-gray-200 px-4 py-3 text-sm text-gray-700">
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-1">Categories</p>
+          {CATEGORIES.map((cat) => (
+            <Link
+              key={cat.label}
+              href={cat.href}
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-between py-2.5 hover:text-[#111111] transition-colors border-b border-gray-100 px-1"
+            >
+              <span>{cat.label}</span>
+              <svg className="h-4 w-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           ))}
+
+          <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mt-4 mb-2 px-1">Brands</p>
+          {BRANDS.map((brand) => (
+            <Link
+              key={brand.slug}
+              href={`/brands/${brand.slug}`}
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-3 py-2.5 border-b border-gray-100 px-1"
+            >
+              <div
+                className="w-10 h-6 rounded flex items-center justify-center font-extrabold text-white text-xs"
+                style={{ backgroundColor: brand.color }}
+              >
+                EMAX
+              </div>
+              <span className="font-semibold text-[#111111]">{brand.name}</span>
+            </Link>
+          ))}
+
+          <Link
+            href="/#build-with-us"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center gap-2 mt-4 bg-[#F5C100] text-[#111111] font-bold px-4 py-2.5 rounded-lg text-sm"
+          >
+            ⚡ Build With Us
+          </Link>
         </div>
       )}
     </header>

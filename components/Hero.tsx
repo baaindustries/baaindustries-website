@@ -26,7 +26,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-[#333333] text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-            Premium robotics components, electronics kits, and custom manufacturing services — shipped from India to the US &amp; Europe.
+            Premium robotics components, electronics kits, and custom manufacturing services — delivered to the US &amp; Europe.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">

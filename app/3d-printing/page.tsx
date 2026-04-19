@@ -324,7 +324,7 @@ export default function PrintingPage() {
             3D Printing <span className="text-[#F5C100]">Instant Quote</span>
           </h1>
           <p className="text-gray-400 text-sm max-w-xl">
-            Upload your STL file and get a real-time price in seconds. FDM printing shipped from India to the US &amp; EU.
+            Upload your STL file and get a real-time price in seconds. FDM printing delivered to the US &amp; EU.
           </p>
         </div>
       </div>
