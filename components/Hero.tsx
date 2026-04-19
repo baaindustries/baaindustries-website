@@ -26,7 +26,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-[#333333] text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-            Premium robotics components, electronics kits, and custom manufacturing services — delivered to the US &amp; Europe.
+            Premium robotics components, electronics kits, and custom manufacturing services.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
@@ -50,21 +50,6 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* Trust badges */}
-          <div className="flex flex-wrap gap-6 mt-10 justify-center lg:justify-start text-sm text-[#333333]">
-            <div className="flex items-center gap-2">
-              <span className="text-[#111111] text-lg font-bold">✓</span> 10,000+ Products
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[#111111] text-lg font-bold">✓</span> Ships to US &amp; EU
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[#111111] text-lg font-bold">✓</span> Business Invoicing
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[#111111] text-lg font-bold">✓</span> Custom Manufacturing
-            </div>
-          </div>
         </div>
 
         {/* Right: Visual cards — matches navbar categories */}
