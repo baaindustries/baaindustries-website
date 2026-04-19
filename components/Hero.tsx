@@ -67,18 +67,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: Visual cards */}
+        {/* Right: Visual cards — matches navbar categories */}
         <div className="flex-1 grid grid-cols-2 gap-3 max-w-md w-full">
           {[
-            { icon: '🤖', label: 'Microcontrollers', count: '500+ products' },
-            { icon: '⚙️', label: 'Motors & Drives', count: '800+ products' },
-            { icon: '📡', label: 'Sensors', count: '1,200+ products' },
-            { icon: '🚁', label: 'Drones & FPV', count: '300+ products' },
-            { icon: '🔋', label: 'Power Systems', count: '400+ products' },
-            { icon: '📦', label: 'Kits & Bundles', count: '150+ kits' },
+            { icon: '⚙️', label: 'Motors',             href: '/shop?category=Motors',             count: 'Brushless & servo' },
+            { icon: '📡', label: 'Sensors',             href: '/shop?category=Sensors',            count: 'IMU, LiDAR & more' },
+            { icon: '🖥️', label: 'Development Boards',  href: '/shop?category=Development+Boards', count: 'Arduino, STM32 & more' },
+            { icon: '🖨️', label: '3D Printer Parts',    href: '/shop?category=3D+Printer+Parts',   count: 'Hotends, frames & more' },
           ].map((item) => (
             <Link
-              href="#"
+              href={item.href}
               key={item.label}
               className="bg-white border-2 border-[#111111]/10 hover:border-[#111111] rounded-xl p-4 flex flex-col gap-2 group transition-all hover:shadow-lg"
             >
